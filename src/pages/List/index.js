@@ -2,21 +2,26 @@ import { StyleSheet, Text, View } from 'react-native'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { listMovies } from '../../redux/actions/movies';
+import { ListMovies } from '../../components/molecules';
 
-export default function List() {
+export default function List({navigation}) {
 
   const dispatch = useDispatch();
-  const movies = useSelector(state => state.movieReducer.list)
+  const movies = useSelector(state => state.moviesReducer.list)
 
   useEffect(()=>{
-    dispatch(listMovies())
+    dispatch(listMovies(1))
   },[])
 
   return (
-    <View>
-      <Text>List</Text>
+    <View style={styles.container}>
+      <ListMovies navigation={navigation} data={movies}/>
     </View>
   )
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'black'
+  }
+})

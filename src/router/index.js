@@ -1,5 +1,8 @@
 import React from "react"
+import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { List, Detail } from '../pages';
+
+const Stack = createNativeStackNavigator();
 
 const Router = () => {
     return (
