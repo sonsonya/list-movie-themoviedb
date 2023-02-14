@@ -1,5 +1,12 @@
 const initialState = {
-    list: {
+    first: {
+        created_by: "",
+        description: "",
+        favorite_count: 0,
+        id: "",
+        items: []
+    },
+    second: {
         created_by: "",
         description: "",
         favorite_count: 0,
@@ -37,8 +44,10 @@ const initialState = {
 
 const moviesReducer = (state = initialState, action) => {
     switch(action.type) {
-        case 'GET_LIST_MOVIE': 
-            return { ...state, list: { ...state.list, ...action.payload}};
+        case 'GET_FIRST_LIST_MOVIE': 
+            return { ...state, first: { ...state.first, ...action.payload}};
+        case 'GET_SECOND_LIST_MOVIE': 
+            return { ...state, second: { ...state.second, ...action.payload}};
         case 'GET_DETAIL_MOVIE':
             return { ...state, detail: { ...state.detail, ...action.payload}};
         default: 

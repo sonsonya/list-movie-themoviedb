@@ -1,15 +1,16 @@
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
+import { colors } from '../../../utils/colors'
 
 export default function MoviesVertical({navigation, data}) {
   return (
-    <ScrollView>
+    <ScrollView style={styles.base}>
       {data.items.map((item)=>{
       return <TouchableOpacity style={styles.layout} onPress={()=>navigation.navigate('Detail', { data: item})}>
-              <Image style={styles.img}></Image>
+              <Image style={styles.img} source={{uri: `https://image.tmdb.org/t/p/w500${item.backdrop_path}`}}></Image>
               <View style={styles.container}>
                 <Text style={styles.title}>{item.title}</Text>
-                <Text style={styles.desc}>{item.overview.slice(0,210)}....</Text>
+                <Text style={styles.desc}>Watched by {item.popularity}</Text>
               </View>
             </TouchableOpacity>
       })}
@@ -18,31 +19,37 @@ export default function MoviesVertical({navigation, data}) {
 }
 
 const styles = StyleSheet.create({
+  base: {
+    marginTop: 10
+  },
   layout: {
-    backgroundColor: 'white',
-    height: 200,
+    backgroundColor: colors.primary,
+    height: 150,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 20,
-    marginHorizontal: 6,
-    marginVertical: 5,
-    padding: 15
+    borderRadius: 10,
+    // marginHorizontal: 6,
   },
   container: {
-    width: '60%',
+    width: '50%',
     padding: 10,
     display: 'flex',
     alignItems: 'flex-start',
     justifyContent: 'center' 
   },
   img: {
-    height: '100%',
-    width: '50%'
+    height: '90%',
+    width: '50%',
+    borderRadius: 20,
   },
   title: {
-    fontSize: 20,
+    fontSize: 18,
     textAlign: 'left',
+    color: colors.text.primary
   },
+  desc: {
+    color: colors.text.primary
+  }
 })
